@@ -6,10 +6,13 @@ import com.tong.notice.constant.Constant;
 import com.tong.notice.domian.Notice;
 import com.tong.notice.utils.RedisUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +39,11 @@ public class HermesPipeline implements Pipeline {
                             .setPrice(priceList.get(i))
                             .setImg("https://" + StringUtils.substringBetween(imgList.get(i), "//", "?"))
                             .setHref("https://www.hermes.com" + hrefList.get(i))
+                            .setUpdateTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern(Constant.DATETIME)))
             );
+        }
+        if (CollectionUtils.isEmpty(list)) {
+            return;
         }
 
         // redis cache

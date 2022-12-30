@@ -5,6 +5,7 @@ package com.tong.notice.constant;
  */
 public class Constant {
 
+    public static final String DATETIME = "yyyy-MM-dd HH:mm:ss";
     public static String REDIS_KEY = "hermes_bags";
 
 }
