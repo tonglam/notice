@@ -30,7 +30,7 @@ public class HermesNoticeService implements IHermesNoticeService {
         Spider
                 .create(new HermesPageProcessor())
                 .addUrl("https://www.hermes.com/uk/en/category/women/bags-and-small-leather-goods/bags-and-clutches/#")
-                .addPipeline(new HermesPipeline())
+                .addPipeline(new HermesPipeline(redisTemplate))
                 .thread(1)
                 .run();
     }

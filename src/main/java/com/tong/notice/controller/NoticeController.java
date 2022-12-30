@@ -27,4 +27,9 @@ public class NoticeController {
         return this.hermesNoticeService.queryHermesInfoList();
     }
 
+    @GetMapping("/refreshHermesInfo")
+    public void refreshHermesInfo() {
+        this.hermesNoticeService.createHermesNotice();
+    }
+
 }
