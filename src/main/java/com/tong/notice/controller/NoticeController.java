@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/hermes")
+@RequestMapping("/notice/hermes")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NoticeController {
 
