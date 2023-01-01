@@ -9,7 +9,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  */
 public class HermesPageProcessor implements PageProcessor {
 
-    private Site site = Site.me().setRetryTimes(5).setSleepTime(100);
+    private Site site = Site.me().setRetryTimes(5).setSleepTime(100).setUserAgent("Chrome 108.0.0.0");
 
     @Override
     public void process(Page page) {
