@@ -1,7 +1,7 @@
 package com.tong.notice;
 
 import com.tong.notice.service.IHermesNoticeService;
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domian.NoticeData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Create by tong on 2022/12/30
  */
-public class HermesTest extends NoticeApplicationTests {
+public class HermesTest extends NoticeDataApplicationTests {
 
     @Autowired
     private IHermesNoticeService hermesNoticeService;
@@ -23,13 +23,13 @@ public class HermesTest extends NoticeApplicationTests {
 
     @Test
     void queryHermesInfoList() {
-        List<Notice> list = this.hermesNoticeService.queryHermesInfoList();
+        List<NoticeData> list = this.hermesNoticeService.queryHermesInfoList();
         System.out.println(1);
     }
 
     @Test
     void test(){
-        List<Notice> oldList = this.hermesNoticeService.queryHermesInfoList();
+        List<NoticeData> oldList = this.hermesNoticeService.queryHermesInfoList();
         String updateTime = oldList.get(0).getUpdateTime();
         LocalDateTime localDateTime = LocalDateTime.now();
         // refresh every hour

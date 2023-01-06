@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Notice {
+public class NoticeData {
 
     private String id;
     private String name;

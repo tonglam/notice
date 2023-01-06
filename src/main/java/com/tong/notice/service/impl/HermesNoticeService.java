@@ -3,7 +3,7 @@ package com.tong.notice.service.impl;
 import com.google.common.collect.Lists;
 import com.tong.notice.service.IHermesNoticeService;
 import com.tong.notice.constant.Constant;
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domian.NoticeData;
 import com.tong.notice.webmagic.HermesPageProcessor;
 import com.tong.notice.webmagic.HermesPipeline;
 import lombok.RequiredArgsConstructor;
@@ -36,10 +36,10 @@ public class HermesNoticeService implements IHermesNoticeService {
     }
 
     @Override
-    public List<Notice> queryHermesInfoList() {
-        List<Notice> list = Lists.newArrayList();
+    public List<NoticeData> queryHermesInfoList() {
+        List<NoticeData> list = Lists.newArrayList();
         String key = Constant.REDIS_KEY;
-        this.redisTemplate.opsForHash().entries(key).forEach((k, v) -> list.add((Notice) v));
+        this.redisTemplate.opsForHash().entries(key).forEach((k, v) -> list.add((NoticeData) v));
         return list;
     }
 

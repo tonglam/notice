@@ -1,6 +1,6 @@
 package com.tong.notice.task;
 
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domian.NoticeData;
 import com.tong.notice.service.IHermesNoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class RefreshTask {
     @Scheduled(cron = "0 */5 0-23 * * *")
     public void refreshHermes() {
         log.info("start running refreshHermes!");
-        List<Notice> oldList = this.hermesNoticeService.queryHermesInfoList();
+        List<NoticeData> oldList = this.hermesNoticeService.queryHermesInfoList();
         String updateTime = oldList.get(0).getUpdateTime();
         LocalDateTime localDateTime = LocalDateTime.now();
         // refresh every hour
