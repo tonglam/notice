@@ -31,6 +31,7 @@ public class RefreshTask {
         if (localDateTime.minusHours(1).isAfter(LocalDateTime.parse(updateTime.replaceAll(" ", "T")))) {
             log.info("start refresh hermes info!");
             this.hermesNoticeService.createHermesNotice();
+            log.info("end refresh hermes info!");
         }else{
             log.info("last update in one hour, do not need to refresh!");
         }
