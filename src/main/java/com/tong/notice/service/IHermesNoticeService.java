@@ -1,6 +1,6 @@
 package com.tong.notice.service;
 
-import com.tong.notice.domian.NoticeData;
+import com.tong.notice.domain.NoticeData;
 
 import java.util.List;
 

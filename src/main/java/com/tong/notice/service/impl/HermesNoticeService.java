@@ -3,7 +3,7 @@ package com.tong.notice.service.impl;
 import com.google.common.collect.Lists;
 import com.tong.notice.service.IHermesNoticeService;
 import com.tong.notice.constant.Constant;
-import com.tong.notice.domian.NoticeData;
+import com.tong.notice.domain.NoticeData;
 import com.tong.notice.webmagic.HermesPageProcessor;
 import com.tong.notice.webmagic.HermesPipeline;
 import lombok.RequiredArgsConstructor;

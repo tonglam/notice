@@ -1,6 +1,6 @@
 package com.tong.notice.task;
 
-import com.tong.notice.domian.NoticeData;
+import com.tong.notice.domain.NoticeData;
 import com.tong.notice.service.IHermesNoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.tong.notice.domian;
+package com.tong.notice.domain;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
