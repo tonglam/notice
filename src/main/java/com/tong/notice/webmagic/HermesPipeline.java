@@ -68,7 +68,7 @@ public class HermesPipeline implements Pipeline {
                 // push publication
                 List<String> userList = Lists.newArrayList();
                 RedisUtils.getSetByKey(Constant.NOTIFICATION_KEY).ifPresent(i -> i.stream().map(k -> (String) k).forEach(userList::add));
-                String caption = "[NEW]" + o.getName() + " - " + o.getPrice() + "\r\n" + o.getHref();
+                String caption = "[NEW]" + o.getName() + "\r\n" + o.getPrice() + "\r\n" + o.getHref();
                 TelegramNoticeData data = new TelegramNoticeData()
                         .setImgUrl(o.getImg())
                         .setImgCaption(caption)
