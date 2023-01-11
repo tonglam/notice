@@ -1,4 +1,4 @@
-package com.tong.notice.webmagic;
+package com.tong.notice.webmagic.hermes;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

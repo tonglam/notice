@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 import com.tong.notice.service.IHermesNoticeService;
 import com.tong.notice.constant.Constant;
 import com.tong.notice.domian.Notice;
-import com.tong.notice.webmagic.HermesPageProcessor;
-import com.tong.notice.webmagic.HermesPipeline;
+import com.tong.notice.webmagic.hermes.HermesPageProcessor;
+import com.tong.notice.webmagic.hermes.HermesPipeline;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class HermesNoticeService implements IHermesNoticeService {
     @Override
     public List<Notice> queryHermesInfoList() {
         List<Notice> list = Lists.newArrayList();
-        String key = Constant.REDIS_KEY;
+        String key = Constant.HERMES_REDIS_KEY;
         this.redisTemplate.opsForHash().entries(key).forEach((k, v) -> list.add((Notice) v));
         return list;
     }

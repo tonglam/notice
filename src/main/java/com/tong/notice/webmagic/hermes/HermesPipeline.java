@@ -1,4 +1,4 @@
-package com.tong.notice.webmagic;
+package com.tong.notice.webmagic.hermes;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -54,7 +54,7 @@ public class HermesPipeline implements Pipeline {
             return;
         }
 
-        String key = Constant.REDIS_KEY;
+        String key = Constant.HERMES_REDIS_KEY;
         // if new entry
         List<String> oldIdList = Lists.newArrayList();
         this.redisTemplate.opsForHash().keys(key).forEach(id -> oldIdList.add(id.toString()));

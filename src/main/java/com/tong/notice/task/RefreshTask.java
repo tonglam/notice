@@ -1,6 +1,7 @@
 package com.tong.notice.task;
 
 import com.tong.notice.domian.Notice;
+import com.tong.notice.service.IExchangeService;
 import com.tong.notice.service.IHermesNoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.List;
 public class RefreshTask {
 
     private final IHermesNoticeService hermesNoticeService;
+    private final IExchangeService exchangeService;
 
     @Scheduled(cron = "0 */5 0-23 * * *")
     public void refreshHermes() {
@@ -31,9 +33,16 @@ public class RefreshTask {
         if (localDateTime.minusHours(1).isAfter(LocalDateTime.parse(updateTime.replaceAll(" ", "T")))) {
             log.info("start refresh hermes info!");
             this.hermesNoticeService.createHermesNotice();
-        }else{
+        } else {
             log.info("last update in one hour, do not need to refresh!");
         }
+    }
+
+    @Scheduled(cron = "0 0 * * * *")
+    public void refreshExchange() {
+        log.info("start running refreshExchange!");
+        this.exchangeService.createExchangeNotice();
+        log.info("end running refreshExchange!");
     }
 
 }
