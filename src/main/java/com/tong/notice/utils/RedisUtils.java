@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -71,6 +72,10 @@ public class RedisUtils {
             hashKey = String.valueOf(hashKey);
         }
         return (T) redisTemplate.opsForHash().get(key, hashKey);
+    }
+
+    public static Optional<Set<Object>> getSetByKey(String key) {
+        return redisTemplate.hasKey(key) ? Optional.ofNullable(redisTemplate.opsForSet().members(key)) : Optional.empty();
     }
 
     public static Boolean hasKey(String key) {

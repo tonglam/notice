@@ -1,6 +1,6 @@
 package com.tong.notice.task;
 
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domain.NoticeData;
 import com.tong.notice.service.IExchangeService;
 import com.tong.notice.service.IHermesNoticeService;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +26,14 @@ public class RefreshTask {
     @Scheduled(cron = "0 */5 0-23 * * *")
     public void refreshHermes() {
         log.info("start running refreshHermes!");
-        List<Notice> oldList = this.hermesNoticeService.queryHermesInfoList();
+        List<NoticeData> oldList = this.hermesNoticeService.queryHermesInfoList();
         String updateTime = oldList.get(0).getUpdateTime();
         LocalDateTime localDateTime = LocalDateTime.now();
         // refresh every hour
         if (localDateTime.minusHours(1).isAfter(LocalDateTime.parse(updateTime.replaceAll(" ", "T")))) {
             log.info("start refresh hermes info!");
             this.hermesNoticeService.createHermesNotice();
+            log.info("end refresh hermes info!");
         } else {
             log.info("last update in one hour, do not need to refresh!");
         }

@@ -1,6 +1,6 @@
 package com.tong.notice.controller;
 
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domain.NoticeData;
 import com.tong.notice.service.IHermesNoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ public class NoticeController {
     private final IHermesNoticeService hermesNoticeService;
 
     @GetMapping("/queryHermesInfoList")
-    public List<Notice> queryHermesInfoList() {
+    public List<NoticeData> queryHermesInfoList() {
         return this.hermesNoticeService.queryHermesInfoList();
     }
 

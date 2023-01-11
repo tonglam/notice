@@ -1,6 +1,6 @@
 package com.tong.notice.service;
 
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domain.NoticeData;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ public interface IHermesNoticeService {
 
     void createHermesNotice();
 
-    List<Notice> queryHermesInfoList();
+    List<NoticeData> queryHermesInfoList();
 
 }

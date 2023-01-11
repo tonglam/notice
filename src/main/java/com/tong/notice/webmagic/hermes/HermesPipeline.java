@@ -3,7 +3,10 @@ package com.tong.notice.webmagic.hermes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.tong.notice.constant.Constant;
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domain.NoticeData;
+import com.tong.notice.domain.TelegramNoticeData;
+import com.tong.notice.utils.HttpUtils;
+import com.tong.notice.utils.JsonUtils;
 import com.tong.notice.utils.RedisUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +18,7 @@ import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,7 +35,7 @@ public class HermesPipeline implements Pipeline {
 
     @Override
     public void process(ResultItems resultItems, Task task) {
-        List<Notice> list = Lists.newArrayList();
+        List<NoticeData> list = Lists.newArrayList();
 
         List<String> idList = (List<String>) resultItems.getAll().get("id");
         List<String> nameList = (List<String>) resultItems.getAll().get("name");
@@ -41,7 +45,7 @@ public class HermesPipeline implements Pipeline {
 
         for (int i = 0; i < nameList.size(); i++) {
             list.add(
-                    new Notice()
+                    new NoticeData()
                             .setId(StringUtils.substringAfter(idList.get(i), "-link-"))
                             .setName(nameList.get(i))
                             .setPrice(priceList.get(i))
@@ -58,9 +62,23 @@ public class HermesPipeline implements Pipeline {
         // if new entry
         List<String> oldIdList = Lists.newArrayList();
         this.redisTemplate.opsForHash().keys(key).forEach(id -> oldIdList.add(id.toString()));
-        list.forEach(o->{
-            if(!oldIdList.contains(o.getId())){
+        list.forEach(o -> {
+            if (!oldIdList.contains(o.getId())) {
                 o.setNewEntry(true);
+                // push publication
+                List<String> userList = Lists.newArrayList();
+                RedisUtils.getSetByKey(Constant.NOTIFICATION_KEY).ifPresent(i -> i.stream().map(k -> (String) k).forEach(userList::add));
+                String caption = "[NEW]" + o.getName() + "\r\n" + o.getPrice() + "\r\n" + o.getHref();
+                TelegramNoticeData data = new TelegramNoticeData()
+                        .setImgUrl(o.getImg())
+                        .setImgCaption(caption)
+                        .setNewEntry(true)
+                        .setUserList(userList);
+                try {
+                    HttpUtils.httpPost(Constant.NOTIFICATION_IMAGE, JsonUtils.obj2json(data));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
