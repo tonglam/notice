@@ -2,7 +2,6 @@ package com.tong.notice.service.impl;
 
 import com.google.common.collect.Maps;
 import com.tong.notice.constant.Constant;
-import com.tong.notice.domian.Notice;
 import com.tong.notice.service.IExchangeService;
 import com.tong.notice.webmagic.exchange.ExchangePageProcessor;
 import com.tong.notice.webmagic.exchange.ExchangePipeline;

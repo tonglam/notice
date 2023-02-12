@@ -1,14 +1,11 @@
 package com.tong.notice.service.impl;
 
 import com.google.common.collect.Lists;
-import com.tong.notice.service.IHermesNoticeService;
 import com.tong.notice.constant.Constant;
-import com.tong.notice.domian.Notice;
+import com.tong.notice.domain.NoticeData;
+import com.tong.notice.service.IHermesNoticeService;
 import com.tong.notice.webmagic.hermes.HermesPageProcessor;
 import com.tong.notice.webmagic.hermes.HermesPipeline;
-import com.tong.notice.domain.NoticeData;
-import com.tong.notice.webmagic.HermesPageProcessor;
-import com.tong.notice.webmagic.HermesPipeline;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
